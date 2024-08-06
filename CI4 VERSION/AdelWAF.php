@@ -49,8 +49,9 @@ class AdelWAF {
 		return false;
 	}
 	
+	// source: https://wordpress.org/support/topic/deprecated-constant-filter_sanitize_string-is-deprecated/
 	function clean($data){
-		return filter_var(rawurldecode(htmlspecialchars($data)), FILTER_SANITIZE_STRING);
+        return preg_replace("/[^A-Za-z0-9 ]/", '',rawurldecode(htmlspecialchars($data)));  // return filter_var(rawurldecode(htmlspecialchars($data)), FILTER_SANITIZE_STRING);
 	}
 		
 	function getEnvir($st_var) {
